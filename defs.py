@@ -1,11 +1,12 @@
-def get_numbers_digits(prm):
-    if isinstance(prm, int):
-        prm = {'num': prm, 'rez': []}
-    elif not isinstance(prm, dict):
+def get_numbers_digits(n):
+    if not isinstance(n, int):
         return 'ERROR: only integer may be parameter here'
-    prm['rez'].insert(0, prm['num'] % 10)
-    prm['num'] //= 10
-    return get_numbers_digits(prm) if prm['num']>0 else prm['rez']
+    if n//10>0:
+        r = get_numbers_digits(n//10)
+        r.append(n%10)
+        return r
+    else:
+        return [n%10]
 
 n = 123456
 print(get_numbers_digits(n))
